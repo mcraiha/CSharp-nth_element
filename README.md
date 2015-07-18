@@ -19,7 +19,7 @@ There two main uses for std::nth_element:
 * Give helping hand to sorting algorithms by splitting their work
 
 ## Differences between C++ and C# versions
-C++ version uses iterators. C# versions presented in here use indexes.
+C++ version uses iterators. C# versions presented in here use zero based indexes (e.g. [0] means first item in array).
 
 ## Implementations
 First version comes from **Adam Horvath**. His [blog](http://blog.teamleadnet.com/2012/07/quick-select-algorithm-find-kth-element.html) has an Java example which uses Quick select algorithm.
@@ -33,7 +33,15 @@ std::nth_element (myvector.begin(), myvector.begin()+4, myvector.end());
 ```
 you would replace it with
 ```
-selectNth(myArray, 0, 4, myArray.Length - 1);
+nth_element(myArray, 0, 4, myArray.Length - 1);
 ```
 
+If you want to use custom comparer (like descending order), follow this example
+```
+nth_element(arr, 0, 10, arr.Length - 1, (i1, i2) => i2.CompareTo(i1));
+```
 
+## Licenses
+This text file (**README.md**) is licensed under Creative Commons Zero (CC0 1.0 Universal), see [LICENSE](https://github.com/mcraiha/CSharp-nth_element/blob/master/LICENSE) file
+
+**nthelement-GPLv2.cs** is licensed under GPLv2, see [COPYING](https://github.com/mcraiha/CSharp-nth_element/blob/master/COPYING) file
