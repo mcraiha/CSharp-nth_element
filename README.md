@@ -22,9 +22,9 @@ There two main uses for std::nth_element:
 C++ version uses iterators. C# versions presented in here use zero based indexes (e.g. [0] means first item in array).
 
 ## Implementations
-First version comes from **Adam Horvath**. His [blog](http://blog.teamleadnet.com/2012/07/quick-select-algorithm-find-kth-element.html) has an Java example which uses Quick select algorithm.
+First version (**nthelement-PD.cs**) comes from **Adam Horvath**. His [blog](http://blog.teamleadnet.com/2012/07/quick-select-algorithm-find-kth-element.html) has an Java example which uses Quick select algorithm.
 
-Second one follows the [C source code](http://sourcecodebrowser.com/cdo/1.4.0.1~dfsg/nth__element_8c_source.html) given in CDO project.
+Second one (**nthelement-GPLv2.cs**) follows the [C source code](http://sourcecodebrowser.com/cdo/1.4.0.1~dfsg/nth__element_8c_source.html) given in CDO project.
 
 ## Examples
 You have following C++ line of code
@@ -43,5 +43,7 @@ nth_element(arr, 0, 10, arr.Length - 1, (i1, i2) => i2.CompareTo(i1));
 
 ## Licenses
 This text file (**README.md**) is licensed under Creative Commons Zero (CC0 1.0 Universal), see [LICENSE](https://github.com/mcraiha/CSharp-nth_element/blob/master/LICENSE) file
+
+**nthelement-PD.cs** is released into the public domain. See [PUBLICDOMAIN](https://github.com/mcraiha/CSharp-nth_element/blob/master/PUBLICDOMAIN) file
 
 **nthelement-GPLv2.cs** is licensed under GPLv2, see [COPYING](https://github.com/mcraiha/CSharp-nth_element/blob/master/COPYING) file
