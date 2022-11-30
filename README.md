@@ -1,6 +1,9 @@
 # CSharp-nth_element
 CSharp (C#) versions of std::nth_element (or almost)
 
+## Status
+[![.NET](https://github.com/mcraiha/CSharp-nth_element/actions/workflows/dotnet-tests.yml/badge.svg)](https://github.com/mcraiha/CSharp-nth_element/actions/workflows/dotnet-tests.yml)
+
 ## Introduction to this project
 Since C# doesn't have build-in replacement for std::nth_element, I created few versions from existing implementations. **WARNING** All error handling code has been stripped away, so YMMV
 
