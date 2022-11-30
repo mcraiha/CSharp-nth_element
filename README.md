@@ -31,17 +31,17 @@ Second one (**nthelement-GPLv2.cs**) follows the [C source code](http://sourceco
 
 ## Examples
 You have following C++ line of code
-```
-std::nth_element (myvector.begin(), myvector.begin()+4, myvector.end());
+```c++
+std::nth_element(myvector.begin(), myvector.begin() + 4, myvector.end());
 ```
 you would replace it with
-```
-nth_element(myArray, 0, 4, myArray.Length - 1);
+```cs
+PartialSort.nth_element(array: myArray, startIndex: 0, nthSmallest: 4, endIndex: myArray.Length - 1);
 ```
 
 If you want to use custom comparer (like descending order), follow this example
-```
-nth_element(arr, 0, 10, arr.Length - 1, (i1, i2) => i2.CompareTo(i1));
+```cs
+PartialSort.nth_element(array: arr, startIndex: 0, nthToSeek: 10, endIndex: arr.Length - 1, (i1, i2) => i2.CompareTo(i1));
 ```
 
 ## Licenses
