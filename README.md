@@ -44,6 +44,15 @@ If you want to use custom comparer (like descending order), follow this example
 PartialSort.nth_element(array: arr, startIndex: 0, nthToSeek: 10, endIndex: arr.Length - 1, (i1, i2) => i2.CompareTo(i1));
 ```
 
+## Benchmarks
+
+You can run benchmarks (which compares both implementations) by moving to **benchmarks** folder and running following command
+```bash
+dotnet run -c Release
+```
+
+there are three different input sizes (16 bytes, 64 bytes and 1024 bytes)
+
 ## Licenses
 This text file (**README.md**) is licensed under Creative Commons Zero (CC0 1.0 Universal), see [LICENSE](https://github.com/mcraiha/CSharp-nth_element/blob/master/LICENSE) file
 
