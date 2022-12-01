@@ -16,6 +16,8 @@
   GNU General Public License for more details.
 */
 
+using System;
+
 namespace NthElementGPLv2
 {
 	public static class PartialSort
