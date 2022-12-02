@@ -6,13 +6,14 @@
   This is free and unencumbered software released into the public domain.
 */
 using System;
+using System.Collections.Generic;
 
 namespace NthElementPD
 {
 	public static class PartialSort
 	{
 		// Nth_element made with Quick select algorithm. Custom comparer. nthToSeek is zero base index
-		public static void nth_element<T>(T[] array, int startIndex, int nthToSeek, int endIndex, Comparison<T> comparison)
+		public static void nth_element<T>(IList<T> indexable, int startIndex, int nthToSeek, int endIndex, Comparison<T> comparison)
 		{
 			int from = startIndex; 
 			int to = endIndex;
@@ -21,16 +22,16 @@ namespace NthElementPD
 			while (from < to) 
 			{
 				int r = from, w = to;
-				T mid = array[(r + w) / 2];
+				T mid = indexable[(r + w) / 2];
 				
 				// stop if the reader and writer meets
 				while (r < w) 
 				{
-					if (comparison(array[r], mid) > -1) 
+					if (comparison(indexable[r], mid) > -1) 
 					{ // put the large values at the end
-						T tmp = array[w];
-						array[w] = array[r];
-						array[r] = tmp;
+						T tmp = indexable[w];
+						indexable[w] = indexable[r];
+						indexable[r] = tmp;
 						w--;
 					} 
 					else 
@@ -40,7 +41,7 @@ namespace NthElementPD
 				}
 				
 				// if we stepped up (r++) we need to step one down
-				if (comparison(array[r], mid) > 0)
+				if (comparison(indexable[r], mid) > 0)
 				{
 					r--;
 				}
@@ -61,7 +62,7 @@ namespace NthElementPD
 
 
 		// Nth_element made with Quick select algorithm. Default comparer. nthSmallest is zero base index
-		public static void nth_element<T>(T[] array, int startIndex, int nthSmallest, int endIndex) 
+		public static void nth_element<T>(IList<T> indexable, int startIndex, int nthSmallest, int endIndex) 
 		{
 			int from = startIndex; 
 			int to = endIndex;
@@ -70,16 +71,16 @@ namespace NthElementPD
 			while (from < to) 
 			{
 				int r = from, w = to;
-				T mid = array[(r + w) / 2];
+				T mid = indexable[(r + w) / 2];
 				
 				// stop if the reader and writer meets
 				while (r < w) 
 				{
-					if (System.Collections.Generic.Comparer<T>.Default.Compare(array[r], mid) > -1) 
+					if (System.Collections.Generic.Comparer<T>.Default.Compare(indexable[r], mid) > -1) 
 					{ // put the large values at the end
-						T tmp = array[w];
-						array[w] = array[r];
-						array[r] = tmp;
+						T tmp = indexable[w];
+						indexable[w] = indexable[r];
+						indexable[r] = tmp;
 						w--;
 					} 
 					else 
@@ -89,7 +90,7 @@ namespace NthElementPD
 				}
 				
 				// if we stepped up (r++) we need to step one down
-				if (System.Collections.Generic.Comparer<T>.Default.Compare(array[r], mid) > 0)
+				if (System.Collections.Generic.Comparer<T>.Default.Compare(indexable[r], mid) > 0)
 				{
 					r--;
 				}
