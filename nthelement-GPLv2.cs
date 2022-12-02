@@ -17,13 +17,14 @@
 */
 
 using System;
+using System.Collections.Generic;
 
 namespace NthElementGPLv2
 {
 	public static class PartialSort
 	{
 		// Default comparer. nthSmallest is zero base index
-		public static void nth_element<T>(T[] array, int startIndex, int nthSmallest, int endIndex)
+		public static void nth_element<T>(IList<T> indexable, int startIndex, int nthSmallest, int endIndex)
 		{
 			int i, j;
 			int k = startIndex;
@@ -35,9 +36,9 @@ namespace NthElementGPLv2
 			{
 				if ( l <= k + 1 )
 				{
-					if ( l == k + 1 && System.Collections.Generic.Comparer<T>.Default.Compare(array[l], array[k]) < 0 )
+					if ( l == k + 1 && Comparer<T>.Default.Compare(indexable[l], indexable[k]) < 0 )
 					{
-						Swap(array, k, l);
+						Swap(indexable, k, l);
 					}
 
 					return;
@@ -45,37 +46,37 @@ namespace NthElementGPLv2
 				else 
 				{
 					m = (k + l) >> 1; 
-					Swap(array, m, k + 1);
+					Swap(indexable, m, k + 1);
 
-					if (System.Collections.Generic.Comparer<T>.Default.Compare(array[k], array[l]) > 0)
+					if (Comparer<T>.Default.Compare(indexable[k], indexable[l]) > 0)
 					{
-						Swap(array, k, l);
+						Swap(indexable, k, l);
 					}
 							
-					if (System.Collections.Generic.Comparer<T>.Default.Compare(array[k + 1], array[l]) > 0)
+					if (Comparer<T>.Default.Compare(indexable[k + 1], indexable[l]) > 0)
 					{
-						Swap(array, k + 1, l);
+						Swap(indexable, k + 1, l);
 					}
 									
-					if (System.Collections.Generic.Comparer<T>.Default.Compare(array[k], array[k + 1]) > 0)
+					if (Comparer<T>.Default.Compare(indexable[k], indexable[k + 1]) > 0)
 					{
-						Swap(array, k, k + 1);
+						Swap(indexable, k, k + 1);
 					}
 											
 					i = k + 1; 
 					j = l;
-					a = array[k + 1]; 
+					a = indexable[k + 1]; 
 					
 					for ( ; ; ) 
 					{
-						do i++; while ( System.Collections.Generic.Comparer<T>.Default.Compare(array[i], a) < 0 ); 
-						do j--; while ( System.Collections.Generic.Comparer<T>.Default.Compare(array[j], a) > 0 ); 
+						do i++; while ( Comparer<T>.Default.Compare(indexable[i], a) < 0 ); 
+						do j--; while ( Comparer<T>.Default.Compare(indexable[j], a) > 0 ); 
 						if ( j < i ) break;
-						Swap(array, i, j);
+						Swap(indexable, i, j);
 					} 
 					
-					array[k+1] = array[j]; 
-					array[j] = a;
+					indexable[k+1] = indexable[j]; 
+					indexable[j] = a;
 					if (j >= nthSmallest) l = j - 1; 
 					if (j <= nthSmallest) k = i; 
 				}
@@ -84,7 +85,7 @@ namespace NthElementGPLv2
 
 
 		// Custom comparer. nthToSeek is zero base index
-		public static void nth_element<T>(T[] array, int startIndex, int nthToSeek, int endIndex, Comparison<T> comparison)
+		public static void nth_element<T>(IList<T> indexable, int startIndex, int nthToSeek, int endIndex, Comparison<T> comparison)
 		{
 			int i, j;
 			int k = startIndex;
@@ -96,9 +97,9 @@ namespace NthElementGPLv2
 			{
 				if ( l <= k + 1 )
 				{
-					if ( l == k + 1 && comparison(array[l], array[k]) < 0 )
+					if ( l == k + 1 && comparison(indexable[l], indexable[k]) < 0 )
 					{
-						Swap(array, k, l);
+						Swap(indexable, k, l);
 					}
 					
 					return;
@@ -106,48 +107,48 @@ namespace NthElementGPLv2
 				else 
 				{
 					m = (k + l) >> 1; 
-					Swap(array, m, k + 1);
+					Swap(indexable, m, k + 1);
 					
-					if (comparison(array[k], array[l]) > 0)
+					if (comparison(indexable[k], indexable[l]) > 0)
 					{
-						Swap(array, k, l);
+						Swap(indexable, k, l);
 					}
 					
-					if (comparison(array[k + 1], array[l]) > 0)
+					if (comparison(indexable[k + 1], indexable[l]) > 0)
 					{
-						Swap(array, k + 1, l);
+						Swap(indexable, k + 1, l);
 					}
 					
-					if (comparison(array[k], array[k + 1]) > 0)
+					if (comparison(indexable[k], indexable[k + 1]) > 0)
 					{
-						Swap(array, k, k + 1);
+						Swap(indexable, k, k + 1);
 					}
 					
 					i = k + 1; 
 					j = l;
-					a = array[k + 1]; 
+					a = indexable[k + 1]; 
 					
 					for ( ; ; ) 
 					{
-						do i++; while ( comparison(array[i], a) < 0 ); 
-						do j--; while ( comparison(array[j], a) > 0 ); 
+						do i++; while ( comparison(indexable[i], a) < 0 ); 
+						do j--; while ( comparison(indexable[j], a) > 0 ); 
 						if ( j < i ) break;
-						Swap(array, i, j);
+						Swap(indexable, i, j);
 					} 
 					
-					array[k+1] = array[j]; 
-					array[j] = a;
+					indexable[k+1] = indexable[j]; 
+					indexable[j] = a;
 					if (j >= nthToSeek) l = j - 1; 
 					if (j <= nthToSeek) k = i; 
 				}
 			}
 		}
 
-		private static void Swap<T>(T[] arr, int index1, int index2)
+		private static void Swap<T>(IList<T> indexable, int index1, int index2)
 		{
-			T temp = arr[index1];
-			arr[index1] = arr[index2];
-			arr [index2] = temp;
+			T temp = indexable[index1];
+			indexable[index1] = indexable[index2];
+			indexable [index2] = temp;
 		}
 	}
 }

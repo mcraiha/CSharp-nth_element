@@ -39,7 +39,7 @@ namespace benchmarks
 
 	#region 16 bytes
 		[Benchmark]
-		public void G16Bytes() => NthElementGPLv2.PartialSort.nth_element(array: (int[])array1.Clone(), startIndex: 0, nthSmallest: 8, endIndex: array1.Length - 1);
+		public void G16Bytes() => NthElementGPLv2.PartialSort.nth_element(indexable: (int[])array1.Clone(), startIndex: 0, nthSmallest: 8, endIndex: array1.Length - 1);
 
 		[Benchmark]
 		public void P16Bytes() => NthElementPD.PartialSort.nth_element(array: (int[])array1.Clone(), startIndex: 0, nthSmallest: 8, endIndex: array1.Length - 1);
@@ -48,7 +48,7 @@ namespace benchmarks
 
 	#region 64 bytes
 		[Benchmark]
-		public void G64Bytes() => NthElementGPLv2.PartialSort.nth_element(array: (int[])array2.Clone(), startIndex: 0, nthSmallest: 32, endIndex: array2.Length - 1);
+		public void G64Bytes() => NthElementGPLv2.PartialSort.nth_element(indexable: (int[])array2.Clone(), startIndex: 0, nthSmallest: 32, endIndex: array2.Length - 1);
 
 		[Benchmark]
 		public void P64Bytes() => NthElementPD.PartialSort.nth_element(array: (int[])array2.Clone(), startIndex: 0, nthSmallest: 32, endIndex: array2.Length - 1);
@@ -57,7 +57,7 @@ namespace benchmarks
 
 	#region 1024 bytes
 		[Benchmark]
-		public void G1024Bytes() => NthElementGPLv2.PartialSort.nth_element(array: (int[])array3.Clone(), startIndex: 0, nthSmallest: 512, endIndex: array3.Length - 1);
+		public void G1024Bytes() => NthElementGPLv2.PartialSort.nth_element(indexable: (int[])array3.Clone(), startIndex: 0, nthSmallest: 512, endIndex: array3.Length - 1);
 
 		[Benchmark]
 		public void P1024Bytes() => NthElementPD.PartialSort.nth_element(array: (int[])array3.Clone(), startIndex: 0, nthSmallest: 512, endIndex: array3.Length - 1);
